@@ -80,7 +80,7 @@ $scope.reiniciar = function() {
 
     // Función para cargar la pregunta actual
     $scope.loadQuestion = function(index) {
-        $scope.timeLeft = 15; 
+        $scope.timeLeft = 5; 
 
     };
 
