@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="quizApp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="inicio.css">
+    <link rel="stylesheet" href="info.css">
+    <link rel="stylesheet" href="fondo.css">
+    <link rel="stylesheet" href="quiz.css">
+    <link rel="stylesheet" href="resultados.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.js"></script>
+    <script src="angular.min.js"></script>
+    <script src="script.js"></script>
+    <title>Quiz App</title>
+</head>
+<body ng-controller="QuizController">
+<div class="hero">
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+</div>
+<div class="start_btn" ng-show="startQuiz">
+    <button ng-click="startQuiz()">Iniciar Examen</button>
+</div>
+<div class="info_box fade" ng-if="showInfo">
+    <div class="info-title"><span>Algunas reglas de este cuestionario</span></div>
+    <div class="info-list">
+        <div class="info">1. Tendrás solo <span>15 segundos</span> por cada pregunta.</div>
+        <div class="info">2. Una vez que seleccione su respuesta, no se puede deshacer.</div>
+        <div class="info">3. No puede seleccionar ninguna opción una vez que se acaba el tiempo.</div>
+        <div class="info">4. No puedes salir del Quiz mientras estás jugando.</div>
+        <div class="info">5. Obtendrás puntos en base a tus respuestas correctas. {{Saldo}}</div>
+    </div>
+    <div class="info-buttons">
+        <button class="quit" ng-click="quitQuiz()">Salir del Cuestionario</button>
+        <button class="restart" ng-click="continueQuiz()">Continuar</button>
+    </div>
+</div>
+
+
+<div class="quiz_box fade" ng-if="showpreguntas">
+    <header>
+        <div class="title">Pregunta {{queCounter}}</div>
+        <div class="timer">
+            <div class="time_left_txt">Tiempo restante</div>
+            <div class="timer_sec">{{ timeLeft }}</div>
+        </div>
+        <div class="time_line"></div>
+    </header>
+    <section>
+        <div class="time_bar">
+            <div class="time_progress" ng-style="{width: timeLeftPercentage + '%'}"></div>
+        </div>
+        <div class="que_text">{{queCounter}}.{{ Pregunta }}</div>
+        <div>
+            <div class="option_list" ng-show="showrespuestas">
+                <button class="option" ng-repeat="respuesta in Respuesta" ng-click="optionSelected(respuesta)" >
+                    <span>{{ respuesta.tRespuesta }}</span>
+                </button>
+            </div>  
+            <div class="option_list_2" ng-show="showrespuestaf">
+                <button class="option" ng-repeat="respuesta in Respuesta" 
+                        ng-class="{'correct': respuesta.correcto === 1, 'incorrect': respuesta.selected && respuesta.correcto === 0}">
+                    <span>{{ respuesta.tRespuesta }}</span>
+                </button>
+            </div>   
+            <div class="option_list_2" ng-show="showrespuestafn">
+                <button class="option" ng-repeat="respuesta in Respuesta" 
+                        ng-class="{'ninguna': respuesta.correcto === 1, 'incorrect': respuesta.correcto=== 0}">
+                    <span>{{ respuesta.tRespuesta }}</span>
+                </button>
+            </div>            
+        </div>
+    </section>
+    
+    <footer>
+        <div class="total_que">{{ Saldo }}</div>
+        <button class="next_btn" ng-click="nextQuestion()" ng-show="showNextButton">Siguiente pregunta</button>
+    </footer>
+</div>
+
+<div class="result_box fade" ng-if="showResult">
+    <!-- Mensaje para 8-10 aciertos -->
+    <div ng-if="userScore >= 8">
+        <h2>¡Felicitaciones! 🎉, Conseguíste {{ userScore }} de 10</h2>
+        <div class="resul-buttons">
+            <button class="restart" ng-click="restartQuiz()">Repetir</button>
+            <button class="quit" ng-click="quitQuiz()">Salir</button>
+        </div>
+    </div>
+    
+    <!-- Mensaje para 5-7 aciertos -->
+    <div ng-if="userScore >= 5 && userScore < 8">
+        <h2>¡Que bien 😎, Conseguíste {{ userScore }} de 10</h2>
+        <div class="resul-buttons">
+            <button class="restart" ng-click="restartQuiz()">Repetir</button>
+            <button class="quit" ng-click="quitQuiz()">Salir</button>
+        </div>
+    </div>
+
+    <!-- Mensaje para 2-4 aciertos -->
+    <div ng-if="userScore >= 2 && userScore < 5">
+        <h2>¡Hay que estudiar 😅, Conseguíste {{ userScore }} de 10</h2>
+        <div class="resul-buttons">
+            <button class="restart" ng-click="restartQuiz()">Repetir</button>
+            <button class="quit" ng-click="quitQuiz()">Salir</button>
+        </div>
+    </div>
+
+    <!-- Mensaje para 0-1 aciertos -->
+    <div ng-if="userScore < 2">
+        <h2>¡Lo siento 😞, Conseguíste {{ userScore }} de 10</h2>
+        <div class="resul-buttons">
+            <button class="restart" ng-click="restartQuiz()">Repetir</button>
+            <button class="quit" ng-click="quitQuiz()">Salir</button>
+        </div>
+    </div>
+</div>
+<footer class="copyright">
+    <p>&copy; 2024 "Ciau Dzul Josue Geovani, Sanchez Ek Diego Alexander"  3-D. Todos los derechos reservados.</p>
+</footer>
+</body>
+</html>
