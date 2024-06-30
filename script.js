@@ -65,6 +65,7 @@ $scope.reiniciar = function() {
     // Función para iniciar el cuestionario
     $scope.startQuiz = function() {
         $scope.showInfo = true;
+        $scope.startQuiz = false;
     };
 
     // Función para continuar desde la información
@@ -80,7 +81,7 @@ $scope.reiniciar = function() {
 
     // Función para cargar la pregunta actual
     $scope.loadQuestion = function(index) {
-        $scope.timeLeft = 5; 
+        $scope.timeLeft = 15; 
 
     };
 
@@ -133,6 +134,7 @@ $scope.reiniciar = function() {
     $scope.quitQuiz = function() {
         window.location.reload(); // Recargar la página
         $scope.reiniciar();
+        $scope.startQuiz = true;
     };
 
     // Función para iniciar el temporizador

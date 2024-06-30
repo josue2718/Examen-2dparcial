@@ -1,6 +1,5 @@
 /* Estilos generales */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-
 * {
     margin: 0;
     padding: 0;
@@ -55,3 +54,60 @@ body {
 */
 /* Definir la animación para el resultado */
 /* Animaciones para ng-enter y ng-leave */
+
+.copyright {
+    background-color: #ffffff;
+    border: none; /* Esto quita cualquier borde que esté presente */
+    padding: 10px; /* Añade un poco de espacio alrededor del texto */
+    color: #000000; /* Color de texto blanco para mayor contraste */
+}
+.texto {
+    position: fixed; /* Posición fija para que se mantenga en la pantalla al hacer scroll */
+    top: 20%; /* Posición vertical en relación al viewport */
+    left: 50%; /* Posición horizontal en el centro del viewport */
+    transform: translateX(-50%); /* Centra horizontalmente el elemento */
+    
+    /* Estilos de texto */
+    background: radial-gradient(ellipse at bottom, #ffffff, transparent); /* Gradiente radial */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: 7vw;
+    font-family:Arial, Helvetica, sans-serif;
+    
+    /* Animaciones */
+    -webkit-animation: reveal 3000ms ease-in-out forwards 200ms, glow 2500ms linear infinite 2000ms;
+    animation: reveal 3000ms ease-in-out forwards 200ms, glow 2500ms linear infinite 2000ms;
+}
+
+/* Keyframes para la animación reveal */
+@-webkit-keyframes reveal {
+    80% {
+        letter-spacing: normal; /* Ajusta el espaciado de letras a normal */
+    }
+    100% {
+        background-size: 100% 100%; /* Ajusta el tamaño del gradiente radial */
+    }
+}
+
+@keyframes reveal {
+    80% {
+        letter-spacing: normal; /* Ajusta el espaciado de letras a normal */
+    }
+    100% {
+        background-size: 100% 100%; /* Ajusta el tamaño del gradiente radial */
+    }
+}
+
+/* Keyframes para la animación glow */
+@-webkit-keyframes glow {
+    40% {
+        text-shadow: 0 0 5px #fff; /* Efecto de sombra para resaltar el texto */
+    }
+}
+
+@keyframes glow {
+    40% {
+        text-shadow: 0 0 5px #fff; /* Efecto de sombra para resaltar el texto */
+    }
+}
