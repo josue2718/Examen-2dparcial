@@ -23,7 +23,7 @@ $scope.generatepregunta = function() {
     })
     .catch(function(error) {
         console.error('Error al cargar la información del cliente:', error);
-        alert('Error al cargar la información del cliente');
+        console.log('Error al cargar la información del cliente');
     });
 
     $http.get('https://localhost:7270/api/Respuestas/BuscarPorIrespuesta/' + randomNumber)
@@ -33,7 +33,7 @@ $scope.generatepregunta = function() {
     })
     .catch(function(error) {
         console.error('Error al cargar la información del cliente:', error);
-        alert('Error al cargar la información del cliente');
+        console.log('Error al cargar la información del cliente');
     });
 };
 $scope.reiniciar = function() {
