@@ -91,6 +91,16 @@
   left: 20vw;
   top: 30vh;
 }
+.cube:nth-child(14) {
+  animation-delay: 13s;
+  left: 85vw;
+  top: 20vh;
+}
+.cube:nth-child(15) {
+  animation-delay: 14s;
+  left: 15vw;
+  top: 75vh;
+}
 
 
 
