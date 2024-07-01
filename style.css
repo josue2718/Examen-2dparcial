@@ -72,7 +72,7 @@ body {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    font-size: 7vw;
+    font-size: 6vw;
     
     
     /* Animaciones */
@@ -81,7 +81,26 @@ body {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
 }
-
+.texto2 {
+    position: fixed; /* Posición fija para que se mantenga en la pantalla al hacer scroll */
+    top: 7%; /* Posición vertical en relación al viewport */
+    left: 50%; /* Posición horizontal en el centro del viewport */
+    transform: translateX(-50%); /* Centra horizontalmente el elemento */
+    
+    /* Estilos de texto */
+    background: radial-gradient(ellipse at bottom, #ffffff, transparent); /* Gradiente radial */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: 6vw;
+    
+    
+    /* Animaciones */
+    -webkit-animation: reveal 3000ms ease-in-out forwards 200ms, glow 2500ms linear infinite 2000ms;
+    animation: reveal 3000ms ease-in-out forwards 200ms, glow 2500ms linear infinite 2000ms;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
 /* Keyframes para la animación reveal */
 @-webkit-keyframes reveal {
     80% {

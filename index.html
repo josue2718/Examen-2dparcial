@@ -39,15 +39,23 @@
     <div class="cube"></div>
     <div class="cube"></div>
     <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div  class="texto2" ng-show="startQuiz">
+        Quiz
+    </div>
     <div  class="texto" ng-show="startQuiz">
-        EXAMEN SQL
+        Cultura General
     </div>
 </div>
 <div class="start_btn" ng-show="startQuiz">
-    <button ng-click="startQuiz()">Iniciar Examen</button>
+    <button ng-click="startQuiz()">Iniciar Quiz</button>
 </div>
 <div class="info_box fade" ng-if="showInfo">
-    <div class="info-title"><span>Algunas reglas de este cuestionario</span></div>
+    <div class="info-title"><span>Algunas reglas de este Quiz</span></div>
     <div class="info-list">
         <div class="info">1. Tendrás solo <span>15 segundos</span> por cada pregunta.</div>
         <div class="info">2. Una vez que seleccione su respuesta, no se puede deshacer.</div>
@@ -56,7 +64,7 @@
         <div class="info">5. Obtendrás puntos en base a tus respuestas correctas. {{Saldo}}</div>
     </div>
     <div class="info-buttons">
-        <button class="quit" ng-click="quitQuiz()">Salir del Cuestionario</button>
+        <button class="quit" ng-click="quitQuiz()">Salir del Quiz</button>
         <button class="restart" ng-click="continueQuiz()">Continuar</button>
     </div>
 </div>

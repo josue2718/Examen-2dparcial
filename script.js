@@ -8,12 +8,25 @@ angular.module('quizApp', [])
     // Función para generar un número aleatorio entre 1 y 30
     $scope.usedNumbers = []; // Array para almacenar los números utilizados
 
+    $http.get('https://localhost:7270/api/Preguntas')
+        .then(function(response) {
+            // Contamos la cantidad de preguntas obtenidas
+            $scope.cantidadPreguntas = response.data.length;
+            console.log('Cantidad de preguntas:', $scope.cantidadPreguntas);
+    
+        })
+        .catch(function(error) {
+            console.error('Error al contar las preguntas:', error);
+        });
 $scope.generatepregunta = function() {
+    
+    
+
     var randomNumber;
     do {
-        randomNumber = Math.floor(Math.random() * 30) + 1; // Genera número entre 1 y 30
+        randomNumber = Math.floor(Math.random() * $scope.cantidadPreguntas ) + 1; // Genera número entre 1 y 30
     } while ($scope.usedNumbers.includes(randomNumber)); // Repite si el número ya fue utilizado
-
+    console.log(randomNumber)
     // Agrega el número utilizado al array
     $scope.usedNumbers.push(randomNumber);
 
@@ -22,7 +35,7 @@ $scope.generatepregunta = function() {
         $scope.Pregunta = response.data.tPregunta;
     })
     .catch(function(error) {
-        console.error('Error al cargar la información del cliente:', error);
+        console.error('Error al cargar la información del cliente:');
         console.log('Error al cargar la información del cliente');
     });
 
@@ -119,15 +132,18 @@ $scope.reiniciar = function() {
 
     // Función para reiniciar el cuestionario
     $scope.restartQuiz = function() {
+        
         $scope.showQuiz = false;
         $scope.showResult = false;
         $scope.showrespuestaf = false;
         $scope.showrespuestafn = false;
+        $scope.startQuiz = false;
+        $scope.showInfo = true;
         $scope.showrespuestas = true;
         $scope.userScore = 0; // Reiniciar puntaje
         $scope.queCounter = 1; // Reiniciar contador de preguntas
-        $scope.startQuiz();
         $scope.reiniciar();
+       
     };
 
     // Función para salir del cuestionario
