@@ -2,22 +2,22 @@
 angular.module('quizApp', [])
 .controller('QuizController', ['$scope', '$http', '$location', '$window', function($scope, $http, $location, $window) {
     // Obtener el ID del parámetro de consulta en la URL
-    $scope.id = $location.search().id;
+    $scope.port = 'https://localhost:7270';
     $scope.randomNumber = 0; // Variable para almacenar el número aleatorio
 
     // Función para generar un número aleatorio entre 1 y 30
     $scope.usedNumbers = []; // Array para almacenar los números utilizados
 
-    $http.get('https://localhost:7270/api/Preguntas')
-        .then(function(response) {
-            // Contamos la cantidad de preguntas obtenidas
-            $scope.cantidadPreguntas = response.data.length;
-            console.log('Cantidad de preguntas:', $scope.cantidadPreguntas);
-    
-        })
-        .catch(function(error) {
-            console.error('Error al contar las preguntas:', error);
-        });
+    $http.get($scope.port + '/api/Preguntas')
+    .then(function(response) {
+        // Contamos la cantidad de preguntas obtenidas
+        $scope.cantidadPreguntas = response.data.length;
+        console.log('Cantidad de preguntas:', $scope.cantidadPreguntas);
+
+    })
+    .catch(function(error) {
+        console.error('Error al contar las preguntas:', error);
+    });
 $scope.generatepregunta = function() {
     
     
@@ -30,7 +30,7 @@ $scope.generatepregunta = function() {
     // Agrega el número utilizado al array
     $scope.usedNumbers.push(randomNumber);
 
-    $http.get('https://localhost:7270/api/Preguntas/BuscarPorID/' + randomNumber)
+    $http.get($scope.port +'/api/Preguntas/BuscarPorID/' + randomNumber)
     .then(function(response) {
         $scope.Pregunta = response.data.tPregunta;
     })
@@ -39,7 +39,7 @@ $scope.generatepregunta = function() {
         console.log('Error al cargar la información del cliente');
     });
 
-    $http.get('https://localhost:7270/api/Respuestas/BuscarPorIrespuesta/' + randomNumber)
+    $http.get($scope.port +'/api/Respuestas/BuscarPorIrespuesta/' + randomNumber)
     .then(function(response) {
         $scope.Respuesta = response.data;
         console.log($scope.Respuesta)

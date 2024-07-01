@@ -29,7 +29,7 @@
 /*caja del tiempo restante*/
 .quiz_box header .timer {
     color: #000000;
-    background: #6bb2ff;
+    background: #ffffff;
     border: 1px solid #000000;
     height: 45px;
     padding: 0 8px;
@@ -175,10 +175,10 @@ footer button{
     cursor: pointer;
     border: none;
     outline: none;
-    color: #fff;
+    color: #000000;
     border-radius: 5px;
-    background: #007bff;
-    border: 1px solid #007bff;
+    background: #ffffff;
+    border: 1px solid #000000;
     line-height: 10px;
     transform: scale(0.95);
     transition: all 0.3s ease;
@@ -186,6 +186,7 @@ footer button{
 
 footer button:hover{
     background: #0263ca;
+    color: #ddd;
 }
 
 footer button.show{
